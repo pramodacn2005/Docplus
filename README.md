@@ -77,7 +77,7 @@ JWT_SECRET = "doctalk"
 RAZORPAY_KEY_ID = 'Razorpay Key Id here'
 RAZORPAY_KEY_SECRET = 'Razorpay Key Secret here'
 CURRENCY = "INR"
-VITE_BACKEND_URL=http://localhost: 4000
+VITE_BACKEND_URL=http://localhost:4000
 ```
 
 5. Run the application:

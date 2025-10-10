@@ -1,4 +1,4 @@
-import React from 'react'
+    import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, useAnimation } from 'framer-motion'
 import { FiArrowRight } from 'react-icons/fi'

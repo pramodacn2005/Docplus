@@ -14,14 +14,22 @@ const TopDoctors = () => {
       x: "-100%",
       transition: { duration: 30, ease: "linear" }
     });
-    controls.set({ x: "0%" });
+    // Use start instead of set to avoid mounting issues
+    controls.start({ x: "0%" });
     animateScroll();
   };
 
   React.useEffect(() => {
-    animateScroll();
-    return () => controls.stop();
-  }, []);
+    // Add a small delay to ensure component is mounted
+    const timer = setTimeout(() => {
+      animateScroll();
+    }, 100);
+    
+    return () => {
+      clearTimeout(timer);
+      controls.stop();
+    };
+  }, [controls]);
 
   return (
     <section className="relative py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white overflow-hidden">

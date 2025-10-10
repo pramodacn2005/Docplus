@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { assets } from "../assets/assets";
 import { motion, useInView } from "framer-motion";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { contactInfo } from "../config/contactInfo";
 
 const Footer = () => {
   const ref = useRef(null);
@@ -45,10 +46,10 @@ const Footer = () => {
     { name: "Privacy policy", path: "/privacy" }
   ];
 
-  const contactInfo = [
-    { type: "phone", value: "+91 96415582" },
-    { type: "email", value: "keerthancontact@gmail.com" },
-    { type: "address", value: "K R Nagara, Mysore" }
+  const footerContactInfo = [
+    { type: "phone", value: contactInfo.phone },
+    { type: "email", value: contactInfo.email },
+    { type: "address", value: `${contactInfo.address.line1}, ${contactInfo.address.line2}` }
   ];
 
   return (
@@ -79,9 +80,7 @@ const Footer = () => {
               <img src={assets.logo} alt="Doc+ Logo" className="w-full bg-slate-100" />
             </motion.div>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Doc+ revolutionizes healthcare access with seamless appointment booking, 
-              real-time updates, and secure telemedicine solutions—connecting patients 
-              with top specialists effortlessly.
+              {contactInfo.company.description}
             </p>
             
             <div className="flex space-x-4">
@@ -132,7 +131,7 @@ const Footer = () => {
               Contact
             </motion.h3>
             <ul className="space-y-3">
-              {contactInfo.map((info, index) => (
+              {footerContactInfo.map((info, index) => (
                 <motion.li
                   key={index}
                   variants={itemVariants}

@@ -29,6 +29,14 @@ const addDoctor = async (req, res) => {
             return res.json({ success: false, message: "Please enter a strong password" })
         }
 
+        // Check if Cloudinary is configured
+        if (!process.env.CLOUDINARY_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_SECRET_KEY) {
+            return res.json({ 
+                success: false, 
+                message: "Image upload service not configured. Please contact administrator." 
+            })
+        }
+
         // hashing user password
         const salt = await bcrypt.genSalt(10)// the more no. round the more time it will take
         const hashedPassword = await bcrypt.hash(password, salt)
@@ -67,8 +75,12 @@ const loginAdmin = async (req, res) => {
 
         const { email, password } = req.body
 
-        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-            const token = jwt.sign(email + password, process.env.JWT_SECRET)
+        // Use default admin credentials if environment variables are not set
+        const adminEmail = process.env.ADMIN_EMAIL || 'admin@gmail.com'
+        const adminPassword = process.env.ADMIN_PASSWORD || 'docplus123'
+
+        if (email === adminEmail && password === adminPassword) {
+            const token = jwt.sign(email + password, process.env.JWT_SECRET || 'doctalk')
             res.json({ success: true, token })
             
         } else {

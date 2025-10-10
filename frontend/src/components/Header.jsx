@@ -175,23 +175,6 @@ const Header = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
             </div>
 
-            {/* Doctor badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-lg"
-            >
-              <div className="flex items-center gap-3">
-                <div className="bg-green-100 p-2 rounded-full">
-                  <CheckCircle className="text-green-600" size={20} />
-                </div>
-                <div>
-                  <p className="text-xs text-gray-500">Available now</p>
-                  <p className="text-sm text-black font-semibold">Dr. Keerthan</p>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>

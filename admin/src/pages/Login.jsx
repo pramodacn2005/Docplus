@@ -13,7 +13,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isFlipping, setIsFlipping] = useState(false);
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = (import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000').replace(/\s+/g, '');
   const { setDToken } = useContext(DoctorContext);
   const { setAToken } = useContext(AdminContext);
 
@@ -21,13 +21,19 @@ const Login = () => {
     event.preventDefault();
     setIsLoading(true);
 
+    console.log('Login attempt:', { authType, email, backendUrl });
+
     try {
       const endpoint =
         authType === "Admin" ? "/api/admin/login" : "/api/doctor/login";
+      console.log('Making request to:', backendUrl + endpoint);
+      
       const { data } = await axios.post(backendUrl + endpoint, {
         email,
         password,
       });
+
+      console.log('Login response:', data);
 
       if (data.success) {
         const tokenKey = authType === "Admin" ? "aToken" : "dToken";
@@ -40,6 +46,7 @@ const Login = () => {
         toast.error(data.message);
       }
     } catch (error) {
+      console.error('Login error:', error);
       toast.error(error.response?.data?.message || "Login failed");
     } finally {
       setIsLoading(false);

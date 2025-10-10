@@ -5,7 +5,10 @@ const connectDB = async () => {
 
     mongoose.connection.on('connected', () => console.log("Database Connected"))
 
-    await mongoose.connect(`${process.env.MONGODB_URI}/Doc+`)
+    const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017'
+    await mongoose.connect(mongoUri, {
+        dbName: 'docplus_app'
+    })
 
 }
 

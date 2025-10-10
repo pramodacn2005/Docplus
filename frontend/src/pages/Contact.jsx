@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { assets } from '../assets/assets'
 import { FiMapPin, FiPhone, FiMail, FiArrowRight } from 'react-icons/fi'
+import { contactInfo } from '../config/contactInfo'
 
 const Contact = () => {
   const ref = useRef(null)
@@ -101,9 +102,9 @@ const Contact = () => {
                 OUR OFFICE
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                2nd Ward<br />
-                K R Nagara, Mysore<br />
-                INDIA
+                {contactInfo.address.line1}<br />
+                {contactInfo.address.line2}<br />
+                {contactInfo.address.country}
               </p>
             </motion.div>
 
@@ -118,11 +119,11 @@ const Contact = () => {
               <div className="space-y-3 text-gray-600 dark:text-gray-300">
                 <p className="flex items-center gap-2">
                   <span className="w-4 h-4 rounded-full bg-primary opacity-80"></span>
-                  Tel: 91-967845123
+                  Tel: {contactInfo.phone}
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="w-4 h-4 rounded-full bg-primary opacity-80"></span>
-                  Email: keerthancontact@gmail.com
+                  Email: {contactInfo.email}
                 </p>
               </div>
             </motion.div>
