@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Doc+",
+    "slug": "docplus-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#4A90E2"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.docplus.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#4A90E2"
+      },
+      "package": "com.docplus.mobile"
+    },
+    "web": {},
+    "plugins": [
+      "expo-image-picker"
+    ]
+  }
+}
+
